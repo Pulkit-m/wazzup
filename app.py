@@ -1,12 +1,12 @@
 import streamlit as st  
 from utils.news_wrapper import NewsCoo
 # from streamlit.logger import get_logger
-import logging 
+# import logging 
 from typing import List
 
 @st.cache_data
 def get_news_sources(): 
-    logger.info("Fetching sources")
+    # logger.info("Fetching sources")
     sources = newsCoo.get_sources() #cache this. 
     return sources
 
@@ -31,11 +31,11 @@ def display_article(article):
 
 
 newsCoo = NewsCoo(st.secrets["newsapikey"])
-logging.basicConfig(filename='logs/app_log.log', level=logging.DEBUG, 
-                    format='%(asctime)s::%(message)s',
-                    filemode='w')
-logger = logging.getLogger() 
-logger.info("Logger initiated again. App reloading.")
+# logging.basicConfig(filename='logs/app_log.log', level=logging.DEBUG, 
+                    # format='%(asctime)s::%(message)s',
+                    # filemode='w')
+# logger = logging.getLogger() 
+# logger.info("Logger initiated again. App reloading.")
 sources = get_news_sources()
 st.write(f"""
 # What's New! 
@@ -99,11 +99,11 @@ if "search_params" in st.session_state:
     if "category" in params: 
         st.write("Showing results by Category")
         articles = newsCoo.get_top_headlines(category=params["category"])
-        logger.info(f"num of articles in category {params['category']}: {len(articles)}")
+        # logger.info(f"num of articles in category {params['category']}: {len(articles)}")
     elif "sources" in params: 
         st.write("Showing results by Source")
         articles = newsCoo.get_top_headlines(sources=params["sources"])
-        logger.info(f"num of articles by {params['sources']}: {len(articles)}")
+        # logger.info(f"num of articles by {params['sources']}: {len(articles)}")
 
     # In your app logic:
     for article in articles:
